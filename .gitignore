@@ -1,0 +1,60 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage
+*.lcov
+
+# Production builds
+dist/
+build/
+
+# Cache and temp
+.cache/
+.cache-loader/
+tmp/
+temp/
+
+# Dependency directories
+node_modules/
+.npm/
+
+# Lint/format caches
+.eslintcache
+.stylelintcache
+
+# TypeScript
+*.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Webpack/Storybook artifacts
+stats.json
+storybook-static/
+
+# Local overrides
+*.local
+node_modules
