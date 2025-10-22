@@ -48,6 +48,22 @@ module.exports = [
     },
   },
   {
+    files: ['webpack.config.cjs'],
+    languageOptions: {
+      sourceType: 'script',
+      globals: {
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        process: 'readonly',
+        Buffer: 'readonly',
+        global: 'readonly',
+        console: 'readonly',
+      },
+    },
+  },
+  {
     ignores: ['dist/', 'node_modules/'],
   },
 ];

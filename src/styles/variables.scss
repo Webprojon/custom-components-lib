@@ -1,0 +1,52 @@
+// Colors
+$color-primary: #0172eb;
+$color-primary-hover: #0367d1;
+$color-secondary: #6c757d;
+$color-secondary-hover: #5a6268;
+$color-success: #28a745;
+$color-success-contained: #218838;
+$color-success-contained-hover: #1b722e;
+$color-error: #dc3545;
+$color-error-contained: #d32f2f;
+$color-error-contained-hover: #c82333;
+$color-warning: #ffc107;
+$color-warning-contained: #ffc107;
+$color-warning-contained-hover: #e0a800;
+$color-info: #17a2b8;
+$color-info-contained: #138496;
+$color-disabled-bg: #e9ecef;
+$color-disabled-text: #94979a;
+$color-outline: #8bbcf1;
+$color-focus: #007aff;
+$color-text: #1d1d1f;
+$color-bg: #fff;
+
+// Typography
+$font-family-base:
+  -apple-system, BlinkMacSystemFont, 'San Francisco', 'SF Pro Display', 'SF Pro Text',
+  'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-weight-regular: 400;
+$font-weight-light: 200;
+$font-size-sm: 13px;
+$font-size-md: 14px;
+$font-size-lg: 15px;
+
+// Radius
+$radius-sm: 4px;
+
+// Spacing
+$space-1: 6px;
+$space-2: 8px;
+$space-3: 10px;
+$space-4: 12px;
+$space-5: 16px;
+$space-6: 21px;
+
+// Shadows
+$shadow-sm:
+  0 2px 4px rgba(0, 0, 0, 0.15),
+  0 1px 2px rgba(0, 0, 0, 0.12);
+$shadow-sm-active: 0 1px 2px rgba(0, 0, 0, 0.1);
+$shadow-lg:
+  0 4px 8px rgba(0, 0, 0, 0.12),
+  0 2px 4px rgba(0, 0, 0, 0.1);

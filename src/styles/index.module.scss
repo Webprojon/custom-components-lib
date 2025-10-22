@@ -1,0 +1,29 @@
+@use './variables' as *;
+
+:global {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: $font-family-base;
+  }
+
+  body {
+    margin: 0;
+    font-family: $font-family-base;
+    background-color: $color-bg;
+    color: $color-text;
+    line-height: 1.5;
+    font-weight: $font-weight-regular;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 20px;
+  }
+
+  h1 {
+    margin: 30px 0;
+  }
+}
