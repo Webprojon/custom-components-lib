@@ -1,0 +1,273 @@
+@use '../../styles/variables' as *;
+
+.colorPrimary {
+  --tf-accent: #{$color-primary};
+}
+.colorSecondary {
+  --tf-accent: #{$color-secondary};
+}
+.colorSuccess {
+  --tf-accent: #{$color-success};
+}
+.colorInfo {
+  --tf-accent: #{$color-info};
+}
+.colorWarning {
+  --tf-accent: #{$color-warning};
+}
+.colorError {
+  --tf-accent: #{$color-error};
+}
+
+.textField {
+  display: inline-flex;
+  flex-direction: column;
+  font-family: $font-family-base;
+
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.helperText {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.errorText {
+  color: $color-error;
+}
+
+.control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Common input */
+.input {
+  flex: 1 1 auto;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: $color-text;
+  font-size: $font-size-md;
+  padding: 14px 12px;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.noLabel {
+  .input::placeholder {
+    color: #9ca3af;
+  }
+}
+
+/* Size modifiers */
+.small {
+  .input {
+    padding: 8px 10px;
+    font-size: $font-size-sm;
+  }
+}
+
+.medium {
+  .input {
+    padding: 14px 12px;
+  }
+}
+
+/* Start/End adornments */
+.adornment {
+  display: inline-flex;
+  align-items: center;
+  color: #6b7280;
+
+  &.start {
+    margin-left: 12px;
+    margin-right: 8px;
+  }
+
+  &.end {
+    margin-left: 8px;
+    margin-right: 12px;
+  }
+}
+
+/* Floating label */
+.floatingLabel {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: $color-bg;
+  padding: 0 4px;
+  color: #6b7280;
+  pointer-events: none;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease,
+    top 0.2s ease,
+    font-size 0.2s ease;
+}
+
+/* Outlined */
+.outlinedRoot {
+  position: relative;
+  border: 1px solid $color-outline;
+  border-radius: $radius-sm;
+  background: $color-bg;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+
+  /* Hover/Focus use themed accent if provided */
+  &:hover {
+    border-color: var(--tf-accent, $color-focus);
+  }
+
+  &.focused {
+    border-color: var(--tf-accent, $color-focus);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.12);
+  }
+
+  &.disabled {
+    background: $color-disabled-bg;
+    color: $color-disabled-text;
+    border-color: $color-disabled-bg;
+    cursor: not-allowed;
+  }
+
+  &.error {
+    border-color: $color-error;
+  }
+}
+
+.outlinedRoot.withLabel {
+  .floatingLabel {
+    top: 50%;
+  }
+
+  &.shrink {
+    .floatingLabel {
+      top: 0;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: var(--tf-accent, $color-focus);
+    }
+  }
+
+  &.error {
+    .floatingLabel {
+      color: $color-error;
+    }
+  }
+}
+
+/* Filled */
+.filledRoot {
+  position: relative;
+  border-bottom: 1px solid $color-outline;
+  border-top-left-radius: $radius-sm;
+  border-top-right-radius: $radius-sm;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+  &:hover {
+    background: #e5e7eb;
+  }
+
+  &.focused {
+    background: #e5f1ff;
+    border-bottom-color: var(--tf-accent, $color-focus);
+  }
+
+  &.disabled {
+    background: $color-disabled-bg;
+    color: $color-disabled-text;
+  }
+
+  &.error {
+    border-bottom-color: $color-error;
+  }
+}
+
+/* Standard */
+.standardRoot {
+  position: relative;
+  border-bottom: 1px solid $color-outline;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &.focused {
+    border-bottom-color: var(--tf-accent, $color-focus);
+  }
+
+  &.error {
+    border-bottom-color: $color-error;
+  }
+}
+
+/* Label in filled/standard flows slightly up on focus/value */
+.filledRoot.withLabel,
+.standardRoot.withLabel {
+  .floatingLabel {
+    background: transparent;
+  }
+
+  &.shrink {
+    .floatingLabel {
+      top: 0;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: var(--tf-accent, $color-focus);
+    }
+  }
+
+  &.error {
+    .floatingLabel {
+      color: $color-error;
+    }
+  }
+}
+
+/* Placeholder hidden for labeled fields */
+.withLabel {
+  .input::placeholder {
+    color: transparent;
+  }
+}

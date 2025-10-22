@@ -25,7 +25,12 @@ export const Button: React.FC<ButtonProps> = ({
   autoFocus = defaultProps.autoFocus,
   tabIndex,
 }) => {
-  // CSS module classes
+  const [ripples, setRipples] = React.useState<
+    Array<{ id: number; x: number; y: number; size: number }>
+  >([]);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const nextRippleId = React.useRef<number>(0);
+
   const getButtonClasses = (): string => {
     const classes = [
       styles.button,
@@ -41,7 +46,6 @@ export const Button: React.FC<ButtonProps> = ({
     return classes.filter(Boolean).join(' ');
   };
 
-  // Click event handler
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (disabled || loading) {
       event.preventDefault();
@@ -51,7 +55,24 @@ export const Button: React.FC<ButtonProps> = ({
     onClick?.(event);
   };
 
-  // Loading spinner renderer
+  const addRipple = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const element = buttonRef.current;
+    if (!element) return;
+
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    const id = nextRippleId.current++;
+    setRipples((current) => [...current, { id, x, y, size }]);
+
+    // Cleanup ripple after animation
+    window.setTimeout(() => {
+      setRipples((current) => current.filter((r) => r.id !== id));
+    }, 1200);
+  };
+
   const renderLoadingSpinner = (): React.ReactNode => (
     <span className={styles.spinner} aria-hidden="true">
       <svg className={styles.spinnerSvg} viewBox="0 0 24 24">
@@ -71,7 +92,6 @@ export const Button: React.FC<ButtonProps> = ({
     </span>
   );
 
-  // Content renderer
   const renderContent = (): React.ReactNode => {
     const showStartLoading = loading && loadingPosition === 'start';
     const showEndLoading = loading && loadingPosition === 'end';
@@ -93,6 +113,16 @@ export const Button: React.FC<ButtonProps> = ({
           </span>
         )}
         {showEndLoading && renderLoadingSpinner()}
+
+        <span className={styles.rippleContainer} aria-hidden="true">
+          {ripples.map((r) => (
+            <span
+              key={r.id}
+              className={styles.ripple}
+              style={{ left: r.x, top: r.y, width: r.size, height: r.size }}
+            />
+          ))}
+        </span>
       </>
     );
   };
@@ -116,8 +146,10 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      ref={buttonRef}
       className={getButtonClasses()}
       onClick={handleClick}
+      onMouseDown={addRipple}
       disabled={disabled || loading}
       {...getAccessibilityProps()}
       {...getHtmlAttributes()}

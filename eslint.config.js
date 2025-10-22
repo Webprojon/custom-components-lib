@@ -38,7 +38,12 @@ module.exports = [
       ...typescript.configs['recommended-requiring-type-checking'].rules,
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      'prettier/prettier': 'error',
+      'prettier/prettier': [
+        'error',
+        {
+          endOfLine: 'auto',
+        },
+      ],
       'react/prop-types': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',
