@@ -26,6 +26,7 @@ export interface SwitchProps {
   'data-testid'?: string;
   inputRef?: React.RefCallback<HTMLInputElement>;
   inputProps?: BaseInputProps;
+  style?: React.CSSProperties;
 }
 
 export const defaultProps: Required<

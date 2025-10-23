@@ -233,6 +233,9 @@
 .menuItem:hover {
   background: #f5f7fb;
 }
+.menuItem.highlighted {
+  background: #eaf2ff;
+}
 .menuItem.disabled {
   color: $color-disabled-text;
   cursor: not-allowed;

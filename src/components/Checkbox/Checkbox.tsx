@@ -1,4 +1,5 @@
 import React from 'react';
+import { useId } from 'react';
 import { CheckboxProps, defaultProps } from './Checkbox.types';
 import * as styles from './Checkbox.module.scss';
 
@@ -21,11 +22,12 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   inputRef,
   inputProps,
 }) => {
+  const autoId = useId();
+  const fieldId = id ?? `cb-${autoId}`;
   const isControlled = checked !== undefined;
   const [internalChecked, setInternalChecked] = React.useState<boolean>(!!defaultChecked);
   const inputElementRef = React.useRef<HTMLInputElement | null>(null);
   const boxRef = React.useRef<HTMLSpanElement | null>(null);
-  const [isHovered, setIsHovered] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const el = inputElementRef.current;
@@ -83,33 +85,13 @@ export const Checkbox: React.FC<CheckboxProps> = ({
     .join(' ');
 
   return (
-    <label
-      className={containerClasses}
-      data-testid={dataTestId}
-      onMouseEnter={() => !disabled && setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <span className={styles.root} style={{ position: 'relative' }}>
-        {/* Hover halo placed behind the box */}
-        <span
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: size === 'small' ? 34 : size === 'large' ? 42 : 38,
-            height: size === 'small' ? 34 : size === 'large' ? 42 : 38,
-            transform: `translate(-50%, -50%) scale(${isHovered ? 1 : 0.85})`,
-            borderRadius: 9999,
-            background: 'rgba(0, 122, 255, 0.15)',
-            opacity: isHovered ? 1 : 0,
-            transition: 'opacity 150ms ease, transform 180ms ease',
-            pointerEvents: 'none',
-            zIndex: 0,
-          }}
-        />
+    <label className={containerClasses} data-testid={dataTestId}>
+      <span
+        className={`${styles.root} ${size === 'small' ? 'small' : ''} ${size === 'large' ? 'large' : ''}`}
+      >
+        <span className={styles.hoverHalo} aria-hidden="true" />
         <input
-          id={id}
+          id={fieldId}
           ref={(node) => {
             inputElementRef.current = node;
             inputRef?.(node as HTMLInputElement);
@@ -143,7 +125,11 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         </span>
       </span>
       {label && (
-        <span className={labelClasses} onMouseDown={(e) => e.preventDefault()}>
+        <span
+          className={labelClasses}
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={(e) => e.preventDefault()}
+        >
           {label}
         </span>
       )}
