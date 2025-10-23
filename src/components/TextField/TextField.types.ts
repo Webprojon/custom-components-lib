@@ -1,8 +1,9 @@
 import React from 'react';
-
-export type TextFieldVariant = 'outlined' | 'filled' | 'standard';
-export type TextFieldSize = 'small' | 'medium' | 'large';
-export type TextFieldColor = 'primary' | 'secondary' | 'error' | 'success' | 'info' | 'warning';
+import type {
+  FieldVariant as TextFieldVariant,
+  ComponentSize as TextFieldSize,
+  ComponentColor as TextFieldColor,
+} from '@/types/common';
 
 export interface BaseInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'color'> {}
@@ -42,6 +43,8 @@ export interface TextFieldProps {
   'data-testid'?: string;
   multiline?: boolean;
   rows?: number;
+  'aria-label'?: string;
+  style?: React.CSSProperties;
 }
 export const defaultProps: Required<
   Pick<

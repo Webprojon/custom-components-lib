@@ -1,8 +1,9 @@
 import React from 'react';
-
-export type SelectVariant = 'outlined' | 'filled' | 'standard';
-export type SelectSize = 'small' | 'medium' | 'large';
-export type SelectColor = 'primary' | 'secondary' | 'error' | 'success' | 'info' | 'warning';
+import type {
+  FieldVariant as SelectVariant,
+  ComponentSize as SelectSize,
+  ComponentColor as SelectColor,
+} from '@/types/common';
 
 export type SelectValue = string | number;
 
@@ -30,6 +31,8 @@ export interface BaseSelectProps<T extends SelectValue = SelectValue> {
   error?: boolean;
   className?: string;
   'data-testid'?: string;
+  style?: React.CSSProperties;
+  'aria-label'?: string;
 
   options?: Array<SelectOption<T>>;
 

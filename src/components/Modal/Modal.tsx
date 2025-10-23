@@ -32,7 +32,16 @@ const isTopModal = (id: number | null): boolean => {
   return last === id;
 };
 
-export const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
+export const Modal: React.FC<ModalProps> = ({
+  open,
+  onClose,
+  children,
+  'aria-labelledby': ariaLabelledby,
+  'aria-describedby': ariaDescribedby,
+  onBackdropClick,
+  disableEscapeKeyDown,
+  keepMounted,
+}) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
 
@@ -47,8 +56,8 @@ export const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
     }, 0);
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isTopModal(instanceIdRef.current)) {
-        onClose?.();
+      if (event.key === 'Escape' && isTopModal(instanceIdRef.current) && !disableEscapeKeyDown) {
+        if (typeof onClose === 'function') onClose();
       }
     };
 
@@ -63,12 +72,17 @@ export const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
       }
       previousActiveElementRef.current?.focus?.();
     };
-  }, [open, onClose]);
+  }, [open, onClose, disableEscapeKeyDown]);
 
-  if (!open) return null;
+  if (!open && !keepMounted) return null;
 
   const handleBackdropClick = () => {
-    if (isTopModal(instanceIdRef.current)) onClose?.();
+    if (isTopModal(instanceIdRef.current)) {
+      const backdropFn = onBackdropClick as (() => void) | undefined;
+      if (backdropFn) backdropFn();
+      const closeFn = onClose as (() => void) | undefined;
+      if (closeFn) closeFn();
+    }
   };
 
   const handleContentClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
@@ -82,6 +96,8 @@ export const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
         className={styles.content}
         role="dialog"
         aria-modal="true"
+        aria-labelledby={ariaLabelledby}
+        aria-describedby={ariaDescribedby}
         tabIndex={-1}
         onClick={handleContentClick}
       >
@@ -90,6 +106,7 @@ export const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
     </div>
   );
 
+  if (typeof document === 'undefined') return null;
   return createPortal(modal, document.body);
 };
 

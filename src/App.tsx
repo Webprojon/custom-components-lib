@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function App() {
-  return <div>Modals</div>;
+  return <h1>Custom Components Library</h1>;
 }

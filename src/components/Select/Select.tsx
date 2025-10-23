@@ -23,6 +23,8 @@ export function Select<T extends SelectValue = SelectValue>(props: SelectProps<T
     error = defaultProps.error,
     className = '',
     'data-testid': dataTestId,
+    style,
+    'aria-label': ariaLabel,
     options = [],
     autoWidth = defaultProps.autoWidth,
     multiple = defaultProps.multiple,
@@ -107,6 +109,12 @@ export function Select<T extends SelectValue = SelectValue>(props: SelectProps<T
 
   const helperTextId = id ? `${id}-helper-text` : undefined;
   const listboxId = id ? `${id}-listbox` : undefined;
+  const labelId = label ? `${id}-label` : undefined;
+
+  const rootStyle: React.CSSProperties = {
+    ...(width ? { ['--select-width']: typeof width === 'number' ? `${width}px` : width } : {}),
+    ...(style || {}),
+  };
 
   const getDisplayContent = (): React.ReactNode => {
     if (renderValue && hasValue) {
@@ -170,18 +178,7 @@ export function Select<T extends SelectValue = SelectValue>(props: SelectProps<T
   };
 
   return (
-    <div
-      ref={rootRef}
-      className={rootClasses}
-      style={
-        width
-          ? ({
-              ['--select-width']: typeof width === 'number' ? `${width}px` : width,
-            } as React.CSSProperties)
-          : undefined
-      }
-      data-testid={dataTestId}
-    >
+    <div ref={rootRef} className={rootClasses} style={rootStyle} data-testid={dataTestId}>
       <div
         ref={buttonRef}
         id={id}
@@ -192,6 +189,8 @@ export function Select<T extends SelectValue = SelectValue>(props: SelectProps<T
         aria-controls={listboxId}
         aria-invalid={!!error}
         aria-disabled={disabled}
+        aria-labelledby={label ? labelId : undefined}
+        aria-label={label ? undefined : ariaLabel}
         tabIndex={disabled ? -1 : 0}
         onClick={() => (isOpen ? closeMenu() : openMenu())}
         onKeyDown={handleKeyDown}
@@ -201,7 +200,7 @@ export function Select<T extends SelectValue = SelectValue>(props: SelectProps<T
         {label && (
           <label
             className={styles.floatingLabel}
-            htmlFor={id}
+            id={labelId}
             onMouseDown={(e) => e.preventDefault()}
           >
             {label}
@@ -245,6 +244,7 @@ export function Select<T extends SelectValue = SelectValue>(props: SelectProps<T
                   key={String(option.value)}
                   role="option"
                   aria-selected={isSelected}
+                  aria-disabled={option.disabled}
                   className={itemClasses}
                   onMouseEnter={() => setHighlightedIndex(index)}
                   onClick={(e) => {

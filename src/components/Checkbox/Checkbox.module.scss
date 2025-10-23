@@ -5,6 +5,7 @@
   align-items: center;
   gap: $space-2;
   color: $color-text;
+  position: relative;
 }
 
 .input {
@@ -154,4 +155,37 @@
   &:not(.disabled):hover {
     cursor: pointer;
   }
+}
+
+/* Hover halo previously inline */
+.hoverHalo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 38px;
+  height: 38px;
+  transform: translate(-50%, -50%) scale(0.85);
+  border-radius: 9999px;
+  background: rgba(0, 122, 255, 0.15);
+  opacity: 0;
+  transition:
+    opacity 150ms ease,
+    transform 180ms ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container:not(.disabled):hover .hoverHalo {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Size overrides for halo */
+.root.small .hoverHalo {
+  width: 34px;
+  height: 34px;
+}
+.root.large .hoverHalo {
+  width: 42px;
+  height: 42px;
 }
