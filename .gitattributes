@@ -1,0 +1,3 @@
+# Ensure Git uses LF for shell scripts and husky hooks
+*.sh text eol=lf
+.husky/* text eol=lf
