@@ -90,12 +90,17 @@ export const Modal: React.FC<ModalProps> = ({
   };
 
   const modal = (
-    <div className={styles.backdrop} onClick={handleBackdropClick} aria-hidden={false}>
+    <div
+      className={styles.backdrop}
+      onClick={handleBackdropClick}
+      aria-hidden={!open}
+      style={!open ? { display: 'none' } : undefined}
+    >
       <div
         ref={contentRef}
         className={styles.content}
-        role="dialog"
-        aria-modal="true"
+        role={open ? 'dialog' : undefined}
+        aria-modal={open ? true : undefined}
         aria-labelledby={ariaLabelledby}
         aria-describedby={ariaDescribedby}
         tabIndex={-1}
