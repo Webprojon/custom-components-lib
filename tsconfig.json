@@ -22,7 +22,7 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-    "types": ["node", "react", "react-dom"],
+    "types": ["node", "react", "react-dom", "jest", "@testing-library/jest-dom"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],

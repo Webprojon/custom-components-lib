@@ -3,6 +3,13 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["src/**/*", ".storybook/**/*", "index.html", "eslint.config.js"],
+  "include": [
+    "src/**/*",
+    ".storybook/**/*",
+    "index.html",
+    "eslint.config.js",
+    "jest.config.js",
+    "jest.setup.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }
