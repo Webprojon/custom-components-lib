@@ -93,6 +93,9 @@ export function Select<T extends SelectValue = SelectValue>(props: SelectProps<T
         : styles.standard;
 
   const cx = (...xs: Array<string | false | undefined>) => xs.filter(Boolean).join(' ');
+
+  // When placeholder is provided, suppress floating label to avoid visual overlap
+  const hasVisibleLabel = Boolean(label) && !placeholder;
   const containerClasses = cx(
     styles.container,
     variantClassName,
@@ -100,7 +103,7 @@ export function Select<T extends SelectValue = SelectValue>(props: SelectProps<T
     colorClassName,
     error && styles.error,
     disabled && styles.disabled,
-    label ? styles.withLabel : undefined,
+    hasVisibleLabel ? styles.withLabel : undefined,
     (isFocused || hasValue) && styles.shrink,
     isFocused && styles.focused,
   );
@@ -109,7 +112,7 @@ export function Select<T extends SelectValue = SelectValue>(props: SelectProps<T
 
   const helperTextId = id ? `${id}-helper-text` : undefined;
   const listboxId = id ? `${id}-listbox` : undefined;
-  const labelId = label ? `${id}-label` : undefined;
+  const labelId = hasVisibleLabel ? `${id}-label` : undefined;
 
   const rootStyle: React.CSSProperties = {
     ...(width ? { ['--select-width']: typeof width === 'number' ? `${width}px` : width } : {}),
@@ -123,7 +126,11 @@ export function Select<T extends SelectValue = SelectValue>(props: SelectProps<T
     }
 
     if (!hasValue) {
-      return <span className={styles.placeholder}>{placeholder}</span>;
+      // Only show placeholder text when no visible label is rendered
+      if (placeholder && !hasVisibleLabel) {
+        return <span className={styles.placeholder}>{placeholder}</span>;
+      }
+      return null;
     }
 
     if (multiple) {
@@ -189,15 +196,15 @@ export function Select<T extends SelectValue = SelectValue>(props: SelectProps<T
         aria-controls={listboxId}
         aria-invalid={!!error}
         aria-disabled={disabled}
-        aria-labelledby={label ? labelId : undefined}
-        aria-label={label ? undefined : ariaLabel}
+        aria-labelledby={hasVisibleLabel ? labelId : undefined}
+        aria-label={hasVisibleLabel ? undefined : ariaLabel}
         tabIndex={disabled ? -1 : 0}
         onClick={() => (isOpen ? closeMenu() : openMenu())}
         onKeyDown={handleKeyDown}
         onFocus={() => setIsFocused(true)}
         onBlur={() => !isOpen && setIsFocused(false)}
       >
-        {label && (
+        {hasVisibleLabel && (
           <label
             className={styles.floatingLabel}
             id={labelId}
