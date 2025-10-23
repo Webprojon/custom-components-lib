@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { ButtonProps, defaultProps } from './Button.types';
 import clsx from 'clsx';
-import styles from './Button.module.scss';
+import * as styles from './Button.module.scss';
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
