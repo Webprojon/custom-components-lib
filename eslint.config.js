@@ -16,7 +16,7 @@ module.exports = [
         ecmaVersion: 2020,
         sourceType: 'module',
         ecmaFeatures: { jsx: true },
-        project: './tsconfig.json',
+        project: './tsconfig.eslint.json',
       },
       globals: {
         browser: true,
@@ -50,6 +50,12 @@ module.exports = [
     },
     settings: {
       react: { version: 'detect' },
+    },
+  },
+  {
+    files: ['.storybook/main.ts'],
+    rules: {
+      'prettier/prettier': 'off',
     },
   },
   {
