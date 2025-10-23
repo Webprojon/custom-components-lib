@@ -75,6 +75,18 @@ module.exports = [
     },
   },
   {
+    files: ['jest.config.js'],
+    languageOptions: {
+      sourceType: 'script',
+      globals: {
+        __dirname: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        process: 'readonly',
+      },
+    },
+  },
+  {
     ignores: ['dist/', 'node_modules/'],
   },
 ];
