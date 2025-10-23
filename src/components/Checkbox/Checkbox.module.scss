@@ -1,0 +1,157 @@
+@use '../../styles/variables' as *;
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  color: $color-text;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.box {
+  width: 18px;
+  height: 18px;
+  border: 2px solid $color-outline;
+  border-radius: $radius-sm;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+
+  /* Size variants */
+  &.small {
+    width: 16px;
+    height: 16px;
+    .checkmark {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  &.medium {
+    width: 18px;
+    height: 18px;
+    .checkmark {
+      width: 13px;
+      height: 13px;
+    }
+  }
+
+  &.large {
+    width: 20px;
+    height: 20px;
+    .checkmark {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
+
+.checkmark {
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 0.12s ease,
+    transform 0.12s ease;
+}
+
+.checked {
+  border-color: $color-focus;
+  background: $color-focus;
+
+  .checkmark {
+    opacity: 1;
+    transform: scale(1);
+    color: white;
+  }
+}
+
+.indeterminateMark {
+  width: 12px;
+  height: 2px;
+  background: white;
+  border-radius: 1px;
+}
+
+.colorSecondary {
+  &.checked {
+    background: $color-secondary;
+    border-color: $color-secondary;
+  }
+}
+
+.colorSuccess {
+  &.checked {
+    background: $color-success;
+    border-color: $color-success;
+  }
+}
+
+.colorError {
+  &.checked {
+    background: $color-error;
+    border-color: $color-error;
+  }
+}
+
+.colorInfo {
+  &.checked {
+    background: $color-info;
+    border-color: $color-info;
+  }
+}
+
+.colorWarning {
+  &.checked {
+    background: $color-warning;
+    border-color: $color-warning;
+    color: #212529;
+  }
+}
+
+.label {
+  font-size: $font-size-md;
+  user-select: none;
+}
+
+.smallLabel {
+  font-size: $font-size-sm;
+}
+
+.largeLabel {
+  font-size: $font-size-lg;
+}
+
+.disabled {
+  opacity: 1;
+  color: $color-disabled-text;
+  cursor: not-allowed;
+
+  .box {
+    background: $color-disabled-bg;
+    border-color: $color-disabled-bg;
+  }
+}
+
+.container {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+
+  &.start {
+    flex-direction: row-reverse;
+  }
+
+  &:not(.disabled):hover {
+    cursor: pointer;
+  }
+}
