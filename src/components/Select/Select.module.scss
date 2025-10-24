@@ -233,10 +233,10 @@
 .menuItem:hover {
   background: #f5f7fb;
 }
-.menuItem.highlighted {
+.menuItemHighlighted {
   background: #eaf2ff;
 }
-.menuItem.disabled {
+.menuItemDisabled {
   color: $color-disabled-text;
   cursor: not-allowed;
 }

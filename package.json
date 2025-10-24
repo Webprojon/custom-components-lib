@@ -10,15 +10,15 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     }
   },
   "scripts": {
     "prepare": "husky",
     "dev": "webpack serve --mode development",
-    "build": "webpack --mode production",
+    "build": "rimraf dist && tsup src/index.ts --dts --format cjs,esm --out-dir dist",
     "build:dev": "webpack --mode development",
     "start": "npm run dev",
     "test": "jest --passWithNoTests",
@@ -43,18 +43,24 @@
   ],
   "author": "Custom Components Team",
   "license": "MIT",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@mui/material": "^7.3.4",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
-    "clsx": "^2.1.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "typescript": "^5.9.3"
+    "clsx": "^2.1.1"
   },
   "devDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tsup": "^8.0.1",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "typescript": "^5.9.3",
     "@babel/core": "^7.28.4",
     "@babel/preset-env": "^7.28.3",
     "@babel/preset-react": "^7.27.1",
