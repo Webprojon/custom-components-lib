@@ -9,7 +9,8 @@
     "index.html",
     "eslint.config.js",
     "jest.config.js",
-    "jest.setup.ts"
+    "jest.setup.ts",
+    "tsup.config.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }

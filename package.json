@@ -1,6 +1,6 @@
 {
-  "name": "@custom/components-lib",
-  "version": "1.0.0",
+  "name": "@webprojon/ui-lib",
+  "version": "1.4.2",
   "description": "Modern React component library and TypeScript support",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
