@@ -30,6 +30,6 @@
       "@/types/*": ["src/types/*"]
     }
   },
-  "include": ["src/**/*", "src/types/**/*", "index.html"],
+  "include": ["src/**/*", "src/types/**/*", "index.html", "eslint.config.js"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx"]
 }
