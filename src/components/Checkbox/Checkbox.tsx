@@ -84,11 +84,17 @@ export const Checkbox: React.FC<CheckboxProps> = ({
     .filter(Boolean)
     .join(' ');
 
+  const rootClasses = [
+    styles.root,
+    size === 'small' && styles.small,
+    size === 'large' && styles.large,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <label className={containerClasses} data-testid={dataTestId}>
-      <span
-        className={`${styles.root} ${size === 'small' ? 'small' : ''} ${size === 'large' ? 'large' : ''}`}
-      >
+      <span className={rootClasses}>
         <span className={styles.hoverHalo} aria-hidden="true" />
         <input
           id={fieldId}

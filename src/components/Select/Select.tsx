@@ -243,8 +243,8 @@ export function Select<T extends SelectValue = SelectValue>(props: SelectProps<T
               const isHighlighted = index === highlightedIndex;
               const itemClasses = cx(
                 styles.menuItem,
-                option.disabled && 'disabled',
-                isHighlighted && 'highlighted',
+                option.disabled && styles.menuItemDisabled,
+                isHighlighted && styles.menuItemHighlighted,
               );
               return (
                 <div
