@@ -4,7 +4,7 @@
 
 This project implements a modern, reusable React component library with TypeScript support. The library provides a comprehensive set of UI components following Apple's design principles and modern web development best practices.
 
-**Task Link:** [Custom Components Library Development Task](https://github.com/your-repo/custom-components-lib)
+**Task Link:** [Custom Components Library Development Task](https://github.com/Webprojon/custom-components-lib.git)
 
 ## How to Run the App
 
