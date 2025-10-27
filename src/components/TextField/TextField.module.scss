@@ -1,4 +1,5 @@
 @use '../../styles/variables' as *;
+@use '../../styles/mixins' as mixins;
 
 .colorPrimary {
   --tf-accent: #{$color-primary};
@@ -22,7 +23,7 @@
 .textField {
   display: inline-flex;
   flex-direction: column;
-  font-family: $font-family-base;
+  font-family: 'Roboto', $font-family-base;
 
   &.fullWidth {
     width: 100%;
@@ -38,14 +39,14 @@
 
 .label {
   font-size: 12px;
-  color: #6b7280;
+  color: $color-gray-500;
   margin-bottom: 4px;
 }
 
 .helperText {
   margin-top: 4px;
   font-size: 12px;
-  color: #6b7280;
+  color: $color-gray-500;
 }
 
 .errorText {
@@ -79,31 +80,25 @@
   }
 }
 
-.noLabel {
-  .input::placeholder {
-    color: #9ca3af;
-  }
+.noLabel .input::placeholder {
+  color: $color-gray-400;
 }
 
 /* Size modifiers */
-.small {
-  .input {
-    padding: 8px 10px;
-    font-size: $font-size-sm;
-  }
+.small .input {
+  padding: 8px 10px;
+  font-size: $font-size-sm;
 }
 
-.medium {
-  .input {
-    padding: 14px 12px;
-  }
+.medium .input {
+  padding: 14px 12px;
 }
 
 /* Start/End adornments */
 .adornment {
   display: inline-flex;
   align-items: center;
-  color: #6b7280;
+  color: $color-gray-500;
 
   &.start {
     margin-left: 12px;
@@ -124,7 +119,7 @@
   transform: translateY(-50%);
   background: $color-bg;
   padding: 0 4px;
-  color: #6b7280;
+  color: $color-gray-500;
   pointer-events: none;
   transition:
     transform 0.2s ease,
@@ -168,25 +163,19 @@
   }
 }
 
-.outlinedRoot.withLabel {
-  .floatingLabel {
-    top: 50%;
-  }
+.outlinedRoot.withLabel .floatingLabel {
+  top: 50%;
+}
 
-  &.shrink {
-    .floatingLabel {
-      top: 0;
-      transform: translateY(-50%);
-      font-size: 12px;
-      color: var(--tf-accent, $color-focus);
-    }
-  }
+.outlinedRoot.withLabel.shrink .floatingLabel {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--tf-accent, $color-focus);
+}
 
-  &.error {
-    .floatingLabel {
-      color: $color-error;
-    }
-  }
+.outlinedRoot.withLabel.error .floatingLabel {
+  color: $color-error;
 }
 
 /* Filled */
@@ -195,7 +184,7 @@
   border-bottom: 1px solid $color-outline;
   border-top-left-radius: $radius-sm;
   border-top-right-radius: $radius-sm;
-  background: #f3f4f6;
+  background: $color-gray-100;
   display: flex;
   align-items: center;
   width: 100%;
@@ -205,11 +194,11 @@
     border-color 0.2s ease;
 
   &:hover {
-    background: #e5e7eb;
+    background: $color-gray-200;
   }
 
   &.focused {
-    background: #e5f1ff;
+    background: $color-hover-background-accent;
     border-bottom-color: var(--tf-accent, $color-focus);
   }
 
@@ -241,32 +230,24 @@
   }
 }
 
-/* Label in filled/standard flows slightly up on focus/value */
-.filledRoot.withLabel,
-.standardRoot.withLabel {
-  .floatingLabel {
-    background: transparent;
-  }
-
-  &.shrink {
-    .floatingLabel {
-      top: 0;
-      transform: translateY(-50%);
-      font-size: 12px;
-      color: var(--tf-accent, $color-focus);
-    }
-  }
-
-  &.error {
-    .floatingLabel {
-      color: $color-error;
-    }
-  }
+.filledRoot.withLabel .floatingLabel,
+.standardRoot.withLabel .floatingLabel {
+  background: transparent;
 }
 
-/* Placeholder hidden for labeled fields */
-.withLabel {
-  .input::placeholder {
-    color: transparent;
-  }
+.filledRoot.withLabel.shrink .floatingLabel,
+.standardRoot.withLabel.shrink .floatingLabel {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--tf-accent, $color-focus);
+}
+
+.filledRoot.withLabel.error .floatingLabel,
+.standardRoot.withLabel.error .floatingLabel {
+  color: $color-error;
+}
+
+.withLabel .input::placeholder {
+  color: transparent;
 }

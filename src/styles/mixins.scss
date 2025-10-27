@@ -1,0 +1,266 @@
+@use './variables' as *;
+@use 'sass:color';
+
+// ELEVATION MIXINS (Shadows)
+@mixin elevation-0 {
+  box-shadow: none;
+}
+
+@mixin elevation-1 {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.15),
+    0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation-2 {
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.18),
+    0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation-3 {
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.16);
+}
+
+@mixin elevation-4 {
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    0 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+@mixin elevation-active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+}
+
+@mixin elevation-button-default {
+  @include elevation-2;
+}
+
+@mixin elevation-button-hover {
+  @include elevation-3;
+}
+
+// TRANSITION MIXINS
+@mixin transition-base {
+  transition: all 0.2s ease-in-out;
+}
+
+@mixin transition-colors {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+@mixin transition-elevation {
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+// STATE MIXINS
+@mixin state-disabled {
+  opacity: 1;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: $color-disabled-bg;
+  color: $color-disabled-text;
+  border-color: $color-disabled-bg;
+  @include elevation-0;
+}
+
+@mixin state-loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+@mixin state-focus-visible {
+  outline: 2px solid $color-focus;
+  outline-offset: 2px;
+}
+
+// VARIANT COLOR MIXINS
+// Text variant mixins
+@mixin variant-text-primary {
+  background: transparent;
+  color: $color-focus;
+
+  &:hover:not(.disabled) {
+    background: $color-focus-hover-bg;
+  }
+}
+
+@mixin variant-text-secondary {
+  color: $color-secondary;
+
+  &:hover:not(.disabled) {
+    background: $color-secondary-hover-bg;
+  }
+}
+
+@mixin variant-text-success {
+  color: $color-success;
+
+  &:hover:not(.disabled) {
+    background: $color-success-hover-bg;
+  }
+}
+
+@mixin variant-text-error {
+  color: $color-error;
+
+  &:hover:not(.disabled) {
+    background: $color-error-hover-bg;
+  }
+}
+
+@mixin variant-text-warning {
+  color: $color-warning;
+
+  &:hover:not(.disabled) {
+    background: $color-warning-hover-bg;
+  }
+}
+
+@mixin variant-text-info {
+  color: $color-info;
+
+  &:hover:not(.disabled) {
+    background: $color-info-hover-bg;
+  }
+}
+
+// Outlined variant mixins
+@mixin variant-outlined-base {
+  background: transparent;
+  @include elevation-0;
+}
+
+@mixin variant-outlined-primary {
+  @include variant-outlined-base;
+  color: $color-focus;
+  border: 1px solid $color-outline;
+
+  &:hover {
+    border-color: $color-focus;
+  }
+
+  &:hover:not(.disabled) {
+    background: $color-hover-background;
+  }
+}
+
+@mixin variant-outlined-secondary {
+  @include variant-outlined-base;
+  color: $color-secondary;
+  border: 1px solid $color-secondary;
+
+  &:hover:not(.disabled) {
+    background: $color-secondary-hover-bg;
+  }
+}
+
+@mixin variant-outlined-success {
+  @include variant-outlined-base;
+  color: $color-success;
+  border: 1px solid $color-success;
+
+  &:hover:not(.disabled) {
+    background: $color-success-hover-bg;
+  }
+}
+
+@mixin variant-outlined-error {
+  @include variant-outlined-base;
+  color: $color-error;
+  border: 1px solid $color-error;
+
+  &:hover:not(.disabled) {
+    background: $color-error-hover-bg;
+  }
+}
+
+@mixin variant-outlined-warning {
+  @include variant-outlined-base;
+  color: $color-warning;
+  border: 1px solid $color-warning;
+
+  &:hover:not(.disabled) {
+    background: $color-warning-hover-bg;
+  }
+}
+
+@mixin variant-outlined-info {
+  @include variant-outlined-base;
+  color: $color-info;
+  border: 1px solid $color-info;
+
+  &:hover:not(.disabled) {
+    background: $color-info-hover-bg;
+  }
+}
+
+// Contained variant mixins
+@mixin variant-contained-base {
+  color: $color-text-on-primary;
+  padding: $space-2 $space-5;
+
+  &:hover:not(.disabled):not(.loading) {
+    @include elevation-button-hover;
+  }
+}
+
+@mixin variant-contained-primary {
+  @include variant-contained-base;
+  background: $color-primary;
+
+  &:hover:not(.disabled) {
+    background: $color-primary-hover;
+  }
+}
+
+@mixin variant-contained-secondary {
+  @include variant-contained-base;
+  background: $color-secondary;
+
+  &:hover:not(.disabled) {
+    background: $color-secondary-hover;
+  }
+}
+
+@mixin variant-contained-success {
+  @include variant-contained-base;
+  background: $color-success-contained;
+
+  &:hover:not(.disabled) {
+    background: $color-success-contained-hover;
+  }
+}
+
+@mixin variant-contained-error {
+  @include variant-contained-base;
+  background: $color-error-contained;
+
+  &:hover:not(.disabled) {
+    background: $color-error-contained-hover;
+  }
+}
+
+@mixin variant-contained-warning {
+  @include variant-contained-base;
+  background: $color-warning-contained;
+  color: $color-warning-text;
+
+  &:hover:not(.disabled) {
+    background: $color-warning-contained-hover;
+  }
+}
+
+@mixin variant-contained-info {
+  @include variant-contained-base;
+  background: $color-info-contained;
+
+  &:hover:not(.disabled) {
+    background: $color-info-contained-hover;
+  }
+}

@@ -1,4 +1,5 @@
 @use '../../styles/variables' as *;
+@use '../../styles/mixins' as mixins;
 
 .colorPrimary {
   --accent: #{$color-primary};
@@ -22,7 +23,7 @@
 .selectRoot {
   display: inline-flex;
   flex-direction: column;
-  font-family: $font-family-base;
+  font-family: 'Roboto', $font-family-base;
   position: relative;
 
   &.fullWidth {
@@ -39,14 +40,12 @@
   background: $color-bg;
 }
 
-.selectRoot.fullWidth {
-  .container {
-    width: 100%;
-  }
+.selectRoot.fullWidth .container {
+  width: 100%;
 }
 
 .outlined {
-  border: 1px solid rgba(0, 0, 0, 0.23);
+  border: 1px solid $color-border-default;
   border-radius: $radius-sm;
   transition:
     border-color 0.2s ease,
@@ -69,18 +68,18 @@
 }
 
 .filled {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.23);
+  border-bottom: 1px solid $color-border-default;
   border-top-left-radius: $radius-sm;
   border-top-right-radius: $radius-sm;
-  background: #f3f4f6;
+  background: $color-gray-100;
   transition:
     background 0.2s ease,
     border-color 0.2s ease;
   &:hover {
-    background: #e5e7eb;
+    background: $color-gray-200;
   }
   &.focused {
-    background: #e5f1ff;
+    background: $color-hover-background-accent;
     border-bottom-color: var(--accent, $color-focus);
   }
   &.error {
@@ -89,7 +88,7 @@
 }
 
 .standard {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.23);
+  border-bottom: 1px solid $color-border-default;
   &.focused {
     border-bottom-color: var(--accent, $color-focus);
   }
@@ -124,7 +123,7 @@
 }
 
 .placeholder {
-  color: #9ca3af;
+  color: $color-gray-400;
 }
 
 .floatingLabel {
@@ -134,7 +133,7 @@
   transform: translateY(-50%);
   background: $color-bg;
   padding: 0 4px;
-  color: #6b7280;
+  color: $color-gray-500;
   pointer-events: none;
   transition:
     transform 0.2s ease,
@@ -159,26 +158,22 @@
   color: $color-error;
 }
 
-.outlined {
-  .floatingLabel {
-    z-index: 1;
-  }
+.outlined .floatingLabel {
+  z-index: 1;
+}
 
-  &.shrink {
-    .floatingLabel {
-      top: -8px;
-      transform: none;
-      font-size: 12px;
-      background: $color-bg;
-    }
-  }
+.outlined.shrink .floatingLabel {
+  top: -8px;
+  transform: none;
+  font-size: 12px;
+  background: $color-bg;
 }
 
 .arrow {
   position: absolute;
   right: 10px;
   pointer-events: none;
-  color: #6b7280;
+  color: $color-gray-500;
   font-size: 18px;
 }
 
@@ -192,7 +187,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #e5f1ff;
+  background: $color-chip;
   color: var(--accent, $color-focus);
   border-radius: 16px;
   padding: 3px 8px;
@@ -218,7 +213,7 @@
   background: $color-bg;
   border-radius: $radius-sm;
   box-shadow: $shadow-lg;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid $color-border-light;
 }
 
 .menuItem {
@@ -231,10 +226,10 @@
 }
 
 .menuItem:hover {
-  background: #f5f7fb;
+  background: $color-menu-hover;
 }
 .menuItemHighlighted {
-  background: #eaf2ff;
+  background: $color-menu-highlight;
 }
 .menuItemDisabled {
   color: $color-disabled-text;
@@ -243,7 +238,7 @@
 .menuCheck {
   width: 16px;
   height: 16px;
-  border: 2px solid #c7d2fe;
+  border: 2px solid $color-checkmark-border;
   border-radius: 3px;
   display: inline-flex;
   align-items: center;
@@ -257,7 +252,7 @@
 .helperText {
   margin-top: 4px;
   font-size: 12px;
-  color: #6b7280;
+  color: $color-gray-500;
 }
 .errorText {
   color: $color-error;

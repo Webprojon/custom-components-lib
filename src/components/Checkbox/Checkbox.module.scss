@@ -1,4 +1,5 @@
 @use '../../styles/variables' as *;
+@use '../../styles/mixins' as mixins;
 
 .root {
   display: inline-flex;
@@ -23,35 +24,37 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease-in-out;
+  @include mixins.transition-base;
+}
 
-  /* Size variants */
-  &.small {
-    width: 16px;
-    height: 16px;
-    .checkmark {
-      width: 10px;
-      height: 10px;
-    }
-  }
+.box.small {
+  width: 16px;
+  height: 16px;
+}
 
-  &.medium {
-    width: 18px;
-    height: 18px;
-    .checkmark {
-      width: 13px;
-      height: 13px;
-    }
-  }
+.box.small .checkmark {
+  width: 10px;
+  height: 10px;
+}
 
-  &.large {
-    width: 20px;
-    height: 20px;
-    .checkmark {
-      width: 14px;
-      height: 14px;
-    }
-  }
+.box.medium {
+  width: 18px;
+  height: 18px;
+}
+
+.box.medium .checkmark {
+  width: 13px;
+  height: 13px;
+}
+
+.box.large {
+  width: 20px;
+  height: 20px;
+}
+
+.box.large .checkmark {
+  width: 14px;
+  height: 14px;
 }
 
 .checkmark {
@@ -68,12 +71,12 @@
 .checked {
   border-color: $color-focus;
   background: $color-focus;
+}
 
-  .checkmark {
-    opacity: 1;
-    transform: scale(1);
-    color: white;
-  }
+.checked .checkmark {
+  opacity: 1;
+  transform: scale(1);
+  color: white;
 }
 
 .indeterminateMark {
@@ -83,40 +86,30 @@
   border-radius: 1px;
 }
 
-.colorSecondary {
-  &.checked {
-    background: $color-secondary;
-    border-color: $color-secondary;
-  }
+.colorSecondary.checked {
+  background: $color-secondary;
+  border-color: $color-secondary;
 }
 
-.colorSuccess {
-  &.checked {
-    background: $color-success;
-    border-color: $color-success;
-  }
+.colorSuccess.checked {
+  background: $color-success;
+  border-color: $color-success;
 }
 
-.colorError {
-  &.checked {
-    background: $color-error;
-    border-color: $color-error;
-  }
+.colorError.checked {
+  background: $color-error;
+  border-color: $color-error;
 }
 
-.colorInfo {
-  &.checked {
-    background: $color-info;
-    border-color: $color-info;
-  }
+.colorInfo.checked {
+  background: $color-info;
+  border-color: $color-info;
 }
 
-.colorWarning {
-  &.checked {
-    background: $color-warning;
-    border-color: $color-warning;
-    color: #212529;
-  }
+.colorWarning.checked {
+  background: $color-warning;
+  border-color: $color-warning;
+  color: $color-warning-text;
 }
 
 .label {
@@ -136,25 +129,25 @@
   opacity: 1;
   color: $color-disabled-text;
   cursor: not-allowed;
+}
 
-  .box {
-    background: $color-disabled-bg;
-    border-color: $color-disabled-bg;
-  }
+.disabled .box {
+  background: $color-disabled-bg;
+  border-color: $color-disabled-bg;
 }
 
 .container {
   display: inline-flex;
   align-items: center;
   gap: $space-2;
+}
 
-  &.start {
-    flex-direction: row-reverse;
-  }
+.container.start {
+  flex-direction: row-reverse;
+}
 
-  &:not(.disabled):hover {
-    cursor: pointer;
-  }
+.container:not(.disabled):hover {
+  cursor: pointer;
 }
 
 /* Hover halo previously inline */
@@ -166,7 +159,7 @@
   height: 38px;
   transform: translate(-50%, -50%) scale(0.85);
   border-radius: 9999px;
-  background: rgba(0, 122, 255, 0.15);
+  background: $color-focus-hover-bg;
   opacity: 0;
   transition:
     opacity 150ms ease,
@@ -180,7 +173,7 @@
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* Size overrides for halo */
+/* Size overrides */
 .root.small .hoverHalo {
   width: 34px;
   height: 34px;

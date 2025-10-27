@@ -5,58 +5,74 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
 
-# Runtime data
 pids
 *.pid
 *.seed
 *.pid.lock
 
-# Coverage
-coverage
+coverage/
 *.lcov
+.nyc_output
 
-# Production builds
 dist/
 build/
 
-# Cache and temp
 .cache/
 .cache-loader/
 tmp/
 temp/
+*.tmp
 
-# Dependency directories
 node_modules/
-.npm/
+npm/
+.pnpm-store/
 
-# Lint/format caches
 .eslintcache
 .stylelintcache
 
-# TypeScript
 *.tsbuildinfo
 
-# OS files
 .DS_Store
 Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
 
-# Editor/IDE
 .vscode/
 .idea/
-*.swp
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# Environment files
 .env
 .env.*
 !.env.example
 
-# Webpack/Storybook artifacts
-stats.json
 storybook-static/
 
-# Local overrides
-*.local
-node_modules
+stats.json
 
-dist/
+.npm
+
+*.tgz
+
+.yarn-integrity
+
+.parcel-cache
+
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+.vercel

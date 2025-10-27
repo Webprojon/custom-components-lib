@@ -1,5 +1,6 @@
 @use '../../styles/variables' as *;
 @use 'sass:color';
+@use '../../styles/animations' as *;
 
 .container {
   display: inline-flex;
@@ -38,8 +39,8 @@
   display: inline-flex;
   align-items: center;
   border-radius: 9999px;
-  background: #3a424a;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  background: $color-switch-track;
+  box-shadow: inset 0 0 0 1px $color-switch-track-shadow;
   transition:
     background 160ms ease,
     box-shadow 160ms ease,
@@ -52,10 +53,10 @@
   top: 50%;
   transform: translate(0, -50%);
   border-radius: 9999px;
-  background: #f5f7fa;
+  background: $color-switch-thumb;
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.45),
-    0 2px 4px rgba(0, 0, 0, 0.25);
+    0 1px 2px $color-switch-thumb-shadow,
+    0 2px 4px $color-switch-thumb-shadow-light;
   transition:
     transform 160ms ease,
     background 160ms ease,
@@ -69,7 +70,7 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(0.82);
     border-radius: 9999px;
-    background: rgba(0, 0, 0, 0.35);
+    background: $color-switch-thumb-hover;
     pointer-events: none;
     z-index: 0;
     opacity: 0;
@@ -87,220 +88,179 @@
     height: 100%;
     transform: translate(-50%, -50%) scale(0.85);
     border-radius: 9999px;
-    background: rgba(0, 0, 0, 0.35);
+    background: $color-switch-thumb-hover;
     opacity: 0;
     pointer-events: none;
     z-index: 0;
   }
 }
 
-.container:not(.disabled):hover {
-  .thumb::before {
-    opacity: 0.3;
-    transform: translate(-50%, -50%) scale(1);
-  }
+.container:not(.disabled):hover .thumb::before {
+  opacity: 0.3;
+  transform: translate(-50%, -50%) scale(1);
 }
 
-.container:not(.disabled):active {
-  .thumb::after {
-    animation: switch-thumb-ripple 420ms ease-out;
-  }
+.container:not(.disabled):active .thumb::after {
+  animation: switch-thumb-ripple 420ms ease-out;
 }
 
 /* Sizes */
 .small {
   width: 28px;
   height: 12px;
+}
 
-  .thumb {
-    width: 14px;
-    height: 14px;
+.small .thumb {
+  width: 14px;
+  height: 14px;
+}
 
-    &::before {
-      width: 24px;
-      height: 24px;
-    }
-  }
+.small .thumb::before {
+  width: 24px;
+  height: 24px;
 }
 
 .medium {
   width: 36px;
   height: 14px;
+}
 
-  .thumb {
-    width: 20px;
-    height: 20px;
+.medium .thumb {
+  width: 20px;
+  height: 20px;
+}
 
-    &::before {
-      width: 42px;
-      height: 42px;
-    }
-  }
+.medium .thumb::before {
+  width: 42px;
+  height: 42px;
 }
 
 .large {
   width: 44px;
   height: 18px;
+}
 
-  .thumb {
-    width: 24px;
-    height: 24px;
+.large .thumb {
+  width: 24px;
+  height: 24px;
+}
 
-    &::before {
-      width: 50px;
-      height: 50px;
-    }
-  }
+.large .thumb::before {
+  width: 50px;
+  height: 50px;
 }
 
 .checked {
   background: color.adjust($color-focus, $lightness: -10%, $saturation: -5%);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-
-  &.small {
-    .thumb {
-      transform: translate(18px, -50%);
-    }
-  }
-
-  &.medium {
-    .thumb {
-      transform: translate(20px, -50%);
-    }
-  }
-
-  &.large {
-    .thumb {
-      transform: translate(24px, -50%);
-    }
-  }
-
-  .thumb {
-    background: color.adjust($color-focus, $lightness: 35%);
-    box-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.5),
-      0 2px 6px rgba(0, 0, 0, 0.3);
-
-    &::before {
-      background: rgba($color-focus, 0.35);
-    }
-
-    &::after {
-      background: rgba($color-focus, 0.35);
-    }
-  }
+  box-shadow: inset 0 0 0 1px $color-switch-checked-shadow;
 }
 
-.colorSecondary {
-  &.checked {
-    background: color.adjust($color-secondary, $lightness: -6%, $saturation: -6%);
-    .thumb {
-      background: color.adjust($color-secondary, $lightness: 38%);
-
-      &::before {
-        background: rgba($color-secondary, 0.35);
-      }
-
-      &::after {
-        background: rgba($color-secondary, 0.35);
-      }
-    }
-  }
+.checked.small .thumb {
+  transform: translate(18px, -50%);
 }
-.colorSuccess {
-  &.checked {
-    background: color.adjust($color-success, $lightness: -10%, $saturation: -6%);
-    .thumb {
-      background: color.adjust($color-success, $lightness: 42%);
 
-      &::before {
-        background: rgba($color-success, 0.35);
-      }
-
-      &::after {
-        background: rgba($color-success, 0.35);
-      }
-    }
-  }
+.checked.medium .thumb {
+  transform: translate(20px, -50%);
 }
-.colorInfo {
-  &.checked {
-    background: color.adjust($color-info, $lightness: -8%, $saturation: -6%);
-    .thumb {
-      background: color.adjust($color-info, $lightness: 40%);
 
-      &::before {
-        background: rgba($color-info, 0.35);
-      }
-
-      &::after {
-        background: rgba($color-info, 0.35);
-      }
-    }
-  }
+.checked.large .thumb {
+  transform: translate(24px, -50%);
 }
-.colorWarning {
-  &.checked {
-    background: color.adjust($color-warning, $lightness: -12%, $saturation: -12%);
-    .thumb {
-      background: color.adjust($color-warning, $lightness: 45%);
 
-      &::before {
-        background: rgba($color-warning, 0.35);
-      }
-
-      &::after {
-        background: rgba($color-warning, 0.35);
-      }
-    }
-  }
+.checked .thumb {
+  background: color.adjust($color-focus, $lightness: 35%);
+  box-shadow:
+    0 1px 2px $color-switch-thumb-shadow-heavy,
+    0 2px 6px $color-switch-thumb-shadow-secondary;
 }
-.colorError {
-  &.checked {
-    background: color.adjust($color-error, $lightness: -10%, $saturation: -8%);
-    .thumb {
-      background: color.adjust($color-error, $lightness: 45%);
 
-      &::before {
-        background: rgba($color-error, 0.35);
-      }
+.checked .thumb::before,
+.checked .thumb::after {
+  background: $color-switch-ripple-primary;
+}
 
-      &::after {
-        background: rgba($color-error, 0.35);
-      }
-    }
-  }
+.colorSecondary.checked {
+  background: color.adjust($color-secondary, $lightness: -6%, $saturation: -6%);
+}
+
+.colorSecondary.checked .thumb {
+  background: color.adjust($color-secondary, $lightness: 38%);
+}
+
+.colorSecondary.checked .thumb::before,
+.colorSecondary.checked .thumb::after {
+  background: $color-switch-ripple-secondary;
+}
+
+.colorSuccess.checked {
+  background: color.adjust($color-success, $lightness: -10%, $saturation: -6%);
+}
+
+.colorSuccess.checked .thumb {
+  background: color.adjust($color-success, $lightness: 42%);
+}
+
+.colorSuccess.checked .thumb::before,
+.colorSuccess.checked .thumb::after {
+  background: $color-switch-ripple-success;
+}
+
+.colorInfo.checked {
+  background: color.adjust($color-info, $lightness: -8%, $saturation: -6%);
+}
+
+.colorInfo.checked .thumb {
+  background: color.adjust($color-info, $lightness: 40%);
+}
+
+.colorInfo.checked .thumb::before,
+.colorInfo.checked .thumb::after {
+  background: $color-switch-ripple-info;
+}
+
+.colorWarning.checked {
+  background: color.adjust($color-warning, $lightness: -12%, $saturation: -12%);
+}
+
+.colorWarning.checked .thumb {
+  background: color.adjust($color-warning, $lightness: 45%);
+}
+
+.colorWarning.checked .thumb::before,
+.colorWarning.checked .thumb::after {
+  background: $color-switch-ripple-warning;
+}
+
+.colorError.checked {
+  background: color.adjust($color-error, $lightness: -10%, $saturation: -8%);
+}
+
+.colorError.checked .thumb {
+  background: color.adjust($color-error, $lightness: 45%);
+}
+
+.colorError.checked .thumb::before,
+.colorError.checked .thumb::after {
+  background: $color-switch-ripple-error;
 }
 
 .disabled {
   cursor: not-allowed;
   opacity: 1;
+}
 
-  .track {
-    background: #3e444b;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-  }
-  .thumb {
-    background: #d0d5db;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
-  }
+.disabled .track {
+  background: $color-switch-track-disabled;
+  box-shadow: inset 0 0 0 1px $color-switch-track-disabled-shadow;
+}
+
+.disabled .thumb {
+  background: $color-switch-thumb-disabled;
+  box-shadow: 0 1px 1px $color-switch-thumb-shadow-light;
 }
 
 .focusVisible {
-  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.35);
+  box-shadow: 0 0 0 3px $color-focus-shadow;
 }
 
-@keyframes switch-thumb-ripple {
-  0% {
-    opacity: 0.35;
-    transform: translate(-50%, -50%) scale(0.9);
-  }
-  50% {
-    opacity: 0.2;
-    transform: translate(-50%, -50%) scale(2);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(3.2);
-  }
-}
+// Keyframes for switch-thumb-ripple are now in src/styles/animations.scss
