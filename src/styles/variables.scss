@@ -1,0 +1,127 @@
+// Primary
+$color-primary: #0172eb;
+$color-primary-hover: #0367d1;
+
+// Secondary
+$color-secondary: #6c757d;
+$color-secondary-hover: #5a6268;
+$color-secondary-hover-bg: rgba(108, 117, 125, 0.1);
+
+// Success
+$color-success: #28a745;
+$color-success-contained: #218838;
+$color-success-contained-hover: #1b722e;
+$color-success-hover-bg: rgba(40, 167, 69, 0.1);
+
+// Error
+$color-error: #dc3545;
+$color-error-contained: #d32f2f;
+$color-error-contained-hover: #c82333;
+$color-error-hover-bg: rgba(220, 53, 69, 0.1);
+
+// Warning
+$color-warning: #ffc107;
+$color-warning-contained: #ffc107;
+$color-warning-contained-hover: #e0a800;
+$color-warning-text: #212529;
+$color-warning-hover-bg: rgba(255, 193, 7, 0.1);
+
+// Info
+$color-info: #17a2b8;
+$color-info-contained: #138496;
+$color-info-contained-hover: #117a8b;
+$color-info-hover-bg: rgba(23, 162, 184, 0.1);
+
+// Focus
+$color-focus: #007aff;
+$color-focus-hover-bg: rgba(0, 122, 255, 0.1);
+
+// Disabled
+$color-disabled-bg: #e9ecef;
+$color-disabled-text: #94979a;
+
+// Common UI Colors
+$color-outline: #8bbcf1;
+$color-text: #1d1d1f;
+$color-bg: #fff;
+
+// Gray scale
+$color-gray-100: #f3f4f6;
+$color-gray-200: #e5e7eb;
+$color-gray-300: #d0d5db;
+$color-gray-400: #9ca3af;
+$color-gray-500: #6b7280;
+$color-gray-600: #4b5563;
+$color-gray-700: #374151;
+$color-gray-800: #1f2937;
+$color-gray-900: #111827;
+
+// Hover backgrounds
+$color-hover-background: #f6fafd;
+$color-hover-background-light: #f5f7fb;
+$color-hover-background-accent: #e5f1ff;
+
+// Text on colored backgrounds
+$color-text-on-primary: white;
+
+// Additional semantic colors
+$color-border-default: rgba(0, 0, 0, 0.23);
+$color-border-light: rgba(0, 0, 0, 0.06);
+$color-white: #fff;
+$color-black: #000;
+$color-menu-hover: #f5f7fb;
+$color-menu-highlight: #eaf2ff;
+$color-chip: #e5f1ff;
+$color-checkmark-border: #c7d2fe;
+$color-focus-shadow: rgba(0, 122, 255, 0.35);
+$color-backdrop: rgba(0, 0, 0, 0.5);
+
+// Switch specific colors
+$color-switch-track: #3a424a;
+$color-switch-track-disabled: #3e444b;
+$color-switch-thumb: #f5f7fa;
+$color-switch-thumb-disabled: #d0d5db;
+$color-switch-track-shadow: rgba(255, 255, 255, 0.06);
+$color-switch-track-disabled-shadow: rgba(255, 255, 255, 0.04);
+$color-switch-checked-shadow: rgba(255, 255, 255, 0.1);
+$color-switch-thumb-hover: rgba(0, 0, 0, 0.35);
+$color-switch-thumb-shadow: rgba(0, 0, 0, 0.45);
+$color-switch-thumb-shadow-light: rgba(0, 0, 0, 0.25);
+$color-switch-thumb-shadow-heavy: rgba(0, 0, 0, 0.5);
+$color-switch-thumb-shadow-secondary: rgba(0, 0, 0, 0.3);
+$color-switch-ripple-primary: rgba($color-focus, 0.35);
+$color-switch-ripple-secondary: rgba($color-secondary, 0.35);
+$color-switch-ripple-success: rgba($color-success, 0.35);
+$color-switch-ripple-info: rgba($color-info, 0.35);
+$color-switch-ripple-warning: rgba($color-warning, 0.35);
+$color-switch-ripple-error: rgba($color-error, 0.35);
+
+// Typography
+$font-family-base:
+  -apple-system, BlinkMacSystemFont, 'San Francisco', 'SF Pro Display', 'SF Pro Text',
+  'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-weight-regular: 400;
+$font-weight-light: 200;
+$font-size-sm: 13px;
+$font-size-md: 14px;
+$font-size-lg: 15px;
+
+// Radius
+$radius-sm: 4px;
+
+// Spacing
+$space-1: 6px;
+$space-2: 8px;
+$space-3: 10px;
+$space-4: 12px;
+$space-5: 16px;
+$space-6: 21px;
+
+// Shadows
+$shadow-sm:
+  0 2px 4px rgba(0, 0, 0, 0.15),
+  0 1px 2px rgba(0, 0, 0, 0.12);
+$shadow-sm-active: 0 1px 2px rgba(0, 0, 0, 0.1);
+$shadow-lg:
+  0 4px 8px rgba(0, 0, 0, 0.12),
+  0 2px 4px rgba(0, 0, 0, 0.1);

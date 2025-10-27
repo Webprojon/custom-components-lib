@@ -1,2 +1,259 @@
-.select {
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as mixins;
+
+.colorPrimary {
+  --accent: #{$color-primary};
+}
+.colorSecondary {
+  --accent: #{$color-secondary};
+}
+.colorSuccess {
+  --accent: #{$color-success};
+}
+.colorInfo {
+  --accent: #{$color-info};
+}
+.colorWarning {
+  --accent: #{$color-warning};
+}
+.colorError {
+  --accent: #{$color-error};
+}
+
+.selectRoot {
+  display: inline-flex;
+  flex-direction: column;
+  font-family: 'Roboto', $font-family-base;
+  position: relative;
+
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: var(--select-width, 200px);
+  cursor: pointer;
+  background: $color-bg;
+}
+
+.selectRoot.fullWidth .container {
+  width: 100%;
+}
+
+.outlined {
+  border: 1px solid $color-border-default;
+  border-radius: $radius-sm;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: var(--accent, $color-focus);
+  }
+  &.focused {
+    border-color: var(--accent, $color-focus);
+  }
+  &.error {
+    border-color: $color-error;
+  }
+  &.disabled {
+    background: $color-disabled-bg;
+    color: $color-disabled-text;
+    cursor: not-allowed;
+  }
+}
+
+.filled {
+  border-bottom: 1px solid $color-border-default;
+  border-top-left-radius: $radius-sm;
+  border-top-right-radius: $radius-sm;
+  background: $color-gray-100;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+  &:hover {
+    background: $color-gray-200;
+  }
+  &.focused {
+    background: $color-hover-background-accent;
+    border-bottom-color: var(--accent, $color-focus);
+  }
+  &.error {
+    border-bottom-color: $color-error;
+  }
+}
+
+.standard {
+  border-bottom: 1px solid $color-border-default;
+  &.focused {
+    border-bottom-color: var(--accent, $color-focus);
+  }
+  &.error {
+    border-bottom-color: $color-error;
+  }
+}
+
+.display {
+  flex: 1 1 auto;
+  min-height: 56px;
+  padding: 16px 40px 16px 14px;
+  color: $color-text;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.small .display {
+  min-height: 40px;
+  padding: 10px 36px 10px 12px;
+  font-size: 14px;
+}
+.medium .display {
+  min-height: 56px;
+}
+.large .display {
+  min-height: 64px;
+  padding: 18px 44px 18px 16px;
+  font-size: 16px;
+}
+
+.placeholder {
+  color: $color-gray-400;
+}
+
+.floatingLabel {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: $color-bg;
+  padding: 0 4px;
+  color: $color-gray-500;
+  pointer-events: none;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease,
+    top 0.2s ease,
+    font-size 0.2s ease;
+}
+
+.withLabel.filled .floatingLabel,
+.withLabel.standard .floatingLabel {
+  background: transparent;
+}
+
+.shrink .floatingLabel {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--accent, $color-focus);
+}
+
+.error .floatingLabel {
+  color: $color-error;
+}
+
+.outlined .floatingLabel {
+  z-index: 1;
+}
+
+.outlined.shrink .floatingLabel {
+  top: -8px;
+  transform: none;
+  font-size: 12px;
+  background: $color-bg;
+}
+
+.arrow {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  color: $color-gray-500;
+  font-size: 18px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: $color-chip;
+  color: var(--accent, $color-focus);
+  border-radius: 16px;
+  padding: 3px 8px;
+  font-size: 12px;
+}
+
+.chipRemove {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + 4px);
+  left: 0;
+  margin-top: 0;
+  min-width: 100%;
+  max-height: 280px;
+  overflow: auto;
+  background: $color-bg;
+  border-radius: $radius-sm;
+  box-shadow: $shadow-lg;
+  border: 1px solid $color-border-light;
+}
+
+.menuItem {
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.menuItem:hover {
+  background: $color-menu-hover;
+}
+.menuItemHighlighted {
+  background: $color-menu-highlight;
+}
+.menuItemDisabled {
+  color: $color-disabled-text;
+  cursor: not-allowed;
+}
+.menuCheck {
+  width: 16px;
+  height: 16px;
+  border: 2px solid $color-checkmark-border;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent, $color-focus);
+}
+.menuCheck.checked {
+  border-color: var(--accent, $color-focus);
+}
+
+.helperText {
+  margin-top: 4px;
+  font-size: 12px;
+  color: $color-gray-500;
+}
+.errorText {
+  color: $color-error;
 }

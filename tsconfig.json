@@ -22,7 +22,7 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-    "types": ["node", "react", "react-dom"],
+    "types": ["node", "react", "react-dom", "jest", "@testing-library/jest-dom"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
@@ -30,6 +30,6 @@
       "@/types/*": ["src/types/*"]
     }
   },
-  "include": ["src/**/*", "src/types/**/*", "index.html"],
+  "include": ["src/**/*", "src/types/**/*", "index.html", "eslint.config.js"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx"]
 }

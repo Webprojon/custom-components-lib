@@ -1,2 +1,253 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as mixins;
+
+.colorPrimary {
+  --tf-accent: #{$color-primary};
+}
+.colorSecondary {
+  --tf-accent: #{$color-secondary};
+}
+.colorSuccess {
+  --tf-accent: #{$color-success};
+}
+.colorInfo {
+  --tf-accent: #{$color-info};
+}
+.colorWarning {
+  --tf-accent: #{$color-warning};
+}
+.colorError {
+  --tf-accent: #{$color-error};
+}
+
 .textField {
+  display: inline-flex;
+  flex-direction: column;
+  font-family: 'Roboto', $font-family-base;
+
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.label {
+  font-size: 12px;
+  color: $color-gray-500;
+  margin-bottom: 4px;
+}
+
+.helperText {
+  margin-top: 4px;
+  font-size: 12px;
+  color: $color-gray-500;
+}
+
+.errorText {
+  color: $color-error;
+}
+
+.control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Common input */
+.input {
+  flex: 1 1 auto;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: $color-text;
+  font-size: $font-size-md;
+  padding: 14px 12px;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.noLabel .input::placeholder {
+  color: $color-gray-400;
+}
+
+/* Size modifiers */
+.small .input {
+  padding: 8px 10px;
+  font-size: $font-size-sm;
+}
+
+.medium .input {
+  padding: 14px 12px;
+}
+
+/* Start/End adornments */
+.adornment {
+  display: inline-flex;
+  align-items: center;
+  color: $color-gray-500;
+
+  &.start {
+    margin-left: 12px;
+    margin-right: 8px;
+  }
+
+  &.end {
+    margin-left: 8px;
+    margin-right: 12px;
+  }
+}
+
+/* Floating label */
+.floatingLabel {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: $color-bg;
+  padding: 0 4px;
+  color: $color-gray-500;
+  pointer-events: none;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease,
+    top 0.2s ease,
+    font-size 0.2s ease;
+}
+
+/* Outlined */
+.outlinedRoot {
+  position: relative;
+  border: 1px solid $color-outline;
+  border-radius: $radius-sm;
+  background: $color-bg;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+
+  /* Hover/Focus use themed accent if provided */
+  &:hover {
+    border-color: var(--tf-accent, $color-focus);
+  }
+
+  &.focused {
+    border-color: var(--tf-accent, $color-focus);
+  }
+
+  &.disabled {
+    background: $color-disabled-bg;
+    color: $color-disabled-text;
+    border-color: $color-disabled-bg;
+    cursor: not-allowed;
+  }
+
+  &.error {
+    border-color: $color-error;
+  }
+}
+
+.outlinedRoot.withLabel .floatingLabel {
+  top: 50%;
+}
+
+.outlinedRoot.withLabel.shrink .floatingLabel {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--tf-accent, $color-focus);
+}
+
+.outlinedRoot.withLabel.error .floatingLabel {
+  color: $color-error;
+}
+
+/* Filled */
+.filledRoot {
+  position: relative;
+  border-bottom: 1px solid $color-outline;
+  border-top-left-radius: $radius-sm;
+  border-top-right-radius: $radius-sm;
+  background: $color-gray-100;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+  &:hover {
+    background: $color-gray-200;
+  }
+
+  &.focused {
+    background: $color-hover-background-accent;
+    border-bottom-color: var(--tf-accent, $color-focus);
+  }
+
+  &.disabled {
+    background: $color-disabled-bg;
+    color: $color-disabled-text;
+  }
+
+  &.error {
+    border-bottom-color: $color-error;
+  }
+}
+
+/* Standard */
+.standardRoot {
+  position: relative;
+  border-bottom: 1px solid $color-outline;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &.focused {
+    border-bottom-color: var(--tf-accent, $color-focus);
+  }
+
+  &.error {
+    border-bottom-color: $color-error;
+  }
+}
+
+.filledRoot.withLabel .floatingLabel,
+.standardRoot.withLabel .floatingLabel {
+  background: transparent;
+}
+
+.filledRoot.withLabel.shrink .floatingLabel,
+.standardRoot.withLabel.shrink .floatingLabel {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--tf-accent, $color-focus);
+}
+
+.filledRoot.withLabel.error .floatingLabel,
+.standardRoot.withLabel.error .floatingLabel {
+  color: $color-error;
+}
+
+.withLabel .input::placeholder {
+  color: transparent;
 }

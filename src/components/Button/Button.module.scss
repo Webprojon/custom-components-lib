@@ -1,2 +1,212 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as mixins;
+@use '../../styles/animations' as *;
+
+// BASE BUTTON
 .button {
+  font-family: 'Roboto', $font-family-base;
+  font-weight: 400;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  @include mixins.transition-base;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  white-space: nowrap;
+  @include mixins.elevation-button-default;
+
+  &:focus-visible {
+    @include mixins.state-focus-visible;
+  }
+
+  &:active {
+    @include mixins.elevation-active;
+  }
+}
+
+// VARIANTS
+.text {
+  padding: $space-2 $space-5;
+  @include mixins.variant-text-primary;
+}
+
+.outlined {
+  @include mixins.variant-outlined-primary;
+}
+
+.contained {
+  @include mixins.variant-contained-primary;
+}
+
+// SIZES
+.small {
+  font-size: $font-size-sm;
+  padding: $space-1 $space-2;
+  min-height: 32px;
+}
+
+.medium {
+  font-size: $font-size-md;
+  padding: $space-3 $space-5;
+  min-height: 40px;
+}
+
+.large {
+  font-size: $font-size-lg;
+  padding: $space-4 $space-6;
+  min-height: 48px;
+}
+
+// COLORS
+.secondary {
+  &.text {
+    @include mixins.variant-text-secondary;
+  }
+
+  &.outlined {
+    @include mixins.variant-outlined-secondary;
+  }
+
+  &.contained {
+    @include mixins.variant-contained-secondary;
+  }
+}
+
+.success {
+  &.text {
+    @include mixins.variant-text-success;
+  }
+
+  &.outlined {
+    @include mixins.variant-outlined-success;
+  }
+
+  &.contained {
+    @include mixins.variant-contained-success;
+  }
+}
+
+.error {
+  &.text {
+    @include mixins.variant-text-error;
+  }
+
+  &.outlined {
+    @include mixins.variant-outlined-error;
+  }
+
+  &.contained {
+    @include mixins.variant-contained-error;
+  }
+}
+
+.warning {
+  &.text {
+    @include mixins.variant-text-warning;
+  }
+
+  &.outlined {
+    @include mixins.variant-outlined-warning;
+  }
+
+  &.contained {
+    @include mixins.variant-contained-warning;
+  }
+}
+
+.info {
+  &.text {
+    @include mixins.variant-text-info;
+  }
+
+  &.outlined {
+    @include mixins.variant-outlined-info;
+  }
+
+  &.contained {
+    @include mixins.variant-contained-info;
+  }
+}
+
+// STATES
+.disabled {
+  @include mixins.state-disabled;
+}
+
+.loading {
+  @include mixins.state-loading;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+// CONTENT ELEMENTS
+.startIcon {
+  margin-right: $space-2;
+  display: flex;
+  align-items: center;
+}
+
+.endIcon {
+  margin-left: $space-2;
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+// RIPPLE EFFECT
+.rippleContainer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background-color: currentColor;
+  opacity: 0.25;
+  animation: ripple 1200ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+// SPINNER ANIMATIONS
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  margin-right: $space-2;
+
+  &Svg {
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+  }
+
+  &Circle {
+    animation: dash 1.5s ease-in-out infinite;
+  }
+}
+
+.spinnerEnd {
+  margin-right: 0;
+  margin-left: $space-2;
+}
+
+.loadingText {
+  opacity: 0.7;
 }

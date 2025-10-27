@@ -1,2 +1,266 @@
-.switch {
+@use '../../styles/variables' as *;
+@use 'sass:color';
+@use '../../styles/animations' as *;
+
+.container {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+
+  &.start {
+    flex-direction: row-reverse;
+  }
+
+  &:not(.disabled):hover {
+    cursor: pointer;
+  }
 }
+
+.label {
+  font-size: $font-size-md;
+  user-select: none;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  background: $color-switch-track;
+  box-shadow: inset 0 0 0 1px $color-switch-track-shadow;
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease,
+    opacity 160ms ease;
+}
+
+.thumb {
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 9999px;
+  background: $color-switch-thumb;
+  box-shadow:
+    0 1px 2px $color-switch-thumb-shadow,
+    0 2px 4px $color-switch-thumb-shadow-light;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.82);
+    border-radius: 9999px;
+    background: $color-switch-thumb-hover;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition:
+      opacity 150ms ease,
+      transform 180ms ease;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%) scale(0.85);
+    border-radius: 9999px;
+    background: $color-switch-thumb-hover;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.container:not(.disabled):hover .thumb::before {
+  opacity: 0.3;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.container:not(.disabled):active .thumb::after {
+  animation: switch-thumb-ripple 420ms ease-out;
+}
+
+/* Sizes */
+.small {
+  width: 28px;
+  height: 12px;
+}
+
+.small .thumb {
+  width: 14px;
+  height: 14px;
+}
+
+.small .thumb::before {
+  width: 24px;
+  height: 24px;
+}
+
+.medium {
+  width: 36px;
+  height: 14px;
+}
+
+.medium .thumb {
+  width: 20px;
+  height: 20px;
+}
+
+.medium .thumb::before {
+  width: 42px;
+  height: 42px;
+}
+
+.large {
+  width: 44px;
+  height: 18px;
+}
+
+.large .thumb {
+  width: 24px;
+  height: 24px;
+}
+
+.large .thumb::before {
+  width: 50px;
+  height: 50px;
+}
+
+.checked {
+  background: color.adjust($color-focus, $lightness: -10%, $saturation: -5%);
+  box-shadow: inset 0 0 0 1px $color-switch-checked-shadow;
+}
+
+.checked.small .thumb {
+  transform: translate(18px, -50%);
+}
+
+.checked.medium .thumb {
+  transform: translate(20px, -50%);
+}
+
+.checked.large .thumb {
+  transform: translate(24px, -50%);
+}
+
+.checked .thumb {
+  background: color.adjust($color-focus, $lightness: 35%);
+  box-shadow:
+    0 1px 2px $color-switch-thumb-shadow-heavy,
+    0 2px 6px $color-switch-thumb-shadow-secondary;
+}
+
+.checked .thumb::before,
+.checked .thumb::after {
+  background: $color-switch-ripple-primary;
+}
+
+.colorSecondary.checked {
+  background: color.adjust($color-secondary, $lightness: -6%, $saturation: -6%);
+}
+
+.colorSecondary.checked .thumb {
+  background: color.adjust($color-secondary, $lightness: 38%);
+}
+
+.colorSecondary.checked .thumb::before,
+.colorSecondary.checked .thumb::after {
+  background: $color-switch-ripple-secondary;
+}
+
+.colorSuccess.checked {
+  background: color.adjust($color-success, $lightness: -10%, $saturation: -6%);
+}
+
+.colorSuccess.checked .thumb {
+  background: color.adjust($color-success, $lightness: 42%);
+}
+
+.colorSuccess.checked .thumb::before,
+.colorSuccess.checked .thumb::after {
+  background: $color-switch-ripple-success;
+}
+
+.colorInfo.checked {
+  background: color.adjust($color-info, $lightness: -8%, $saturation: -6%);
+}
+
+.colorInfo.checked .thumb {
+  background: color.adjust($color-info, $lightness: 40%);
+}
+
+.colorInfo.checked .thumb::before,
+.colorInfo.checked .thumb::after {
+  background: $color-switch-ripple-info;
+}
+
+.colorWarning.checked {
+  background: color.adjust($color-warning, $lightness: -12%, $saturation: -12%);
+}
+
+.colorWarning.checked .thumb {
+  background: color.adjust($color-warning, $lightness: 45%);
+}
+
+.colorWarning.checked .thumb::before,
+.colorWarning.checked .thumb::after {
+  background: $color-switch-ripple-warning;
+}
+
+.colorError.checked {
+  background: color.adjust($color-error, $lightness: -10%, $saturation: -8%);
+}
+
+.colorError.checked .thumb {
+  background: color.adjust($color-error, $lightness: 45%);
+}
+
+.colorError.checked .thumb::before,
+.colorError.checked .thumb::after {
+  background: $color-switch-ripple-error;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.disabled .track {
+  background: $color-switch-track-disabled;
+  box-shadow: inset 0 0 0 1px $color-switch-track-disabled-shadow;
+}
+
+.disabled .thumb {
+  background: $color-switch-thumb-disabled;
+  box-shadow: 0 1px 1px $color-switch-thumb-shadow-light;
+}
+
+.focusVisible {
+  box-shadow: 0 0 0 3px $color-focus-shadow;
+}
+
+// Keyframes for switch-thumb-ripple are now in src/styles/animations.scss

@@ -1,16 +1,83 @@
 # Custom Components Library
 
-# @webprojon/ui-lib
+## 📋 Task
 
-A modern, lightweight, and customizable UI components library for React with TypeScript support.
+This project implements a modern, reusable React component library with TypeScript support. The library provides a comprehensive set of UI components following Apple's design principles and modern web development best practices.
 
-## 🚀 Installation
+**Task Link:** [Custom Components Library Development Task](https://github.com/Webprojon/custom-components-lib.git)
+
+## How to Run the App
+
+### Prerequisites
+
+- Node.js (version 18 or higher)
+- npm or yarn package manager
+
+### Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Webprojon/custom-components-lib.git
+   cd custom-components-lib
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start development server:**
+
+   ```bash
+   npm run dev
+   ```
+
+   This will start the webpack dev server on `http://localhost:3000`
+
+4. **Run Storybook (Component Documentation):**
+
+   ```bash
+   npm run storybook
+   ```
+
+   This will start Storybook on `http://localhost:6006`
+
+5. **Run tests:**
+
+   ```bash
+   npm test
+   ```
+
+6. **Build the library:**
+   ```bash
+   npm run build
+   ```
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build the library for production
+- `npm run test` - Run Jest tests
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:cov` - Run tests with coverage
+- `npm run storybook` - Start Storybook development server
+- `npm run build-storybook` - Build Storybook for production
+- `npm run lint` - Run ESLint
+- `npm run lint:fix` - Fix ESLint issues automatically
+- `npm run format` - Format code with Prettier
+- `npm run type-check` - Run TypeScript type checking
+
+## Library Usage
+
+### Installation as NPM Package
 
 ```bash
 npm install @webprojon/ui-lib
 ```
 
-## 📦 Usage
+### Basic Usage
 
 ```tsx
 import { Button, TextField, Modal, Checkbox, Select, Switch } from '@webprojon/ui-lib';
@@ -27,11 +94,98 @@ export default function App() {
 }
 ```
 
-## 🎨 Components
+## Project Architecture
 
-### Button
+### Technology Stack
 
-A versatile button component with multiple variants, sizes, and colors.
+- **React 19.2.0** - UI library
+- **TypeScript 5.9.3** - Type safety and development experience
+- **SCSS/CSS Modules** - Styling with modular approach
+- **Webpack 5** - Module bundling and development server
+- **tsup** - Fast TypeScript bundler for library builds
+- **Jest** - Testing framework
+- **Storybook 8.6.14** - Component documentation and development
+- **ESLint + Prettier** - Code quality and formatting
+- **Husky + lint-staged** - Git hooks for code quality
+
+### Build System
+
+The project uses a dual build system:
+
+1. **Development Build (Webpack):**
+   - Hot module replacement
+   - Source maps
+   - Development optimizations
+   - Serves on `http://localhost:3000`
+
+2. **Library Build (tsup):**
+   - CommonJS and ES modules output
+   - TypeScript declarations
+   - Tree-shaking support
+   - Production optimizations
+
+### File Structure
+
+```
+custom-components-lib/
+├── dist/                          # Built library files
+│   ├── index.d.ts                 # TypeScript declarations
+│   ├── index.d.mts                # ES module declarations
+│   ├── index.js                   # CommonJS build
+│   ├── index.mjs                  # ES module build
+│   └── *.map                      # Source maps
+├── src/                           # Source code
+│   ├── components/                # Component library
+│   │   ├── Button/                # Button component
+│   │   │   ├── Button.tsx         # Component implementation
+│   │   │   ├── Button.types.ts    # TypeScript interfaces
+│   │   │   ├── Button.module.scss # Component styles
+│   │   │   ├── Button.stories.tsx # Storybook stories
+│   │   │   ├── Button.test.tsx    # Unit tests
+│   │   │   └── index.ts           # Component exports
+│   │   ├── TextField/             # Text input component
+│   │   ├── Checkbox/              # Checkbox component
+│   │   ├── Select/                # Dropdown select component
+│   │   ├── Switch/                # Toggle switch component
+│   │   ├── Modal/                 # Modal dialog component
+│   │   └── index.ts               # Library exports
+│   ├── styles/                    # Global styles
+│   │   ├── variables.scss         # SCSS variables
+│   │   └── index.module.scss      # Global styles
+│   ├── types/                     # TypeScript type definitions
+│   │   ├── common.ts              # Shared types
+│   │   └── scss.d.ts              # SCSS module declarations
+│   ├── App.tsx                    # Demo application
+│   ├── App.module.scss            # Demo app styles
+│   ├── index.ts                   # Main library entry point
+│   └── index.tsx                  # Demo app entry point
+├── storybook-static/              # Built Storybook documentation
+├── package.json                   # Project configuration
+├── tsconfig.json                  # TypeScript configuration
+├── tsup.config.ts                 # Library build configuration
+├── webpack.config.js              # Development build configuration
+├── jest.config.js                 # Testing configuration
+├── eslint.config.js               # ESLint configuration
+└── README.md                      # Basic documentation
+```
+
+## Components Documentation
+
+### 1. Button Component
+
+A versatile button component with multiple variants, sizes, and states.
+
+**Features:**
+
+- 3 variants: `contained`, `outlined`, `text`
+- 3 sizes: `small`, `medium`, `large`
+- 6 colors: `primary`, `secondary`, `success`, `info`, `warning`, `error`
+- Loading states with customizable spinner position
+- Icon support (start and end icons)
+- Full width option
+- Accessibility support
+
+**Usage:**
 
 ```tsx
 import { Button } from '@webprojon/ui-lib';
@@ -51,17 +205,16 @@ import { Button } from '@webprojon/ui-lib';
 
 // With colors
 <Button color="primary">Primary</Button>
-<Button color="secondary">Secondary</Button>
 <Button color="success">Success</Button>
 <Button color="error">Error</Button>
-
-// With icons
-<Button startIcon={<Icon />}>With Start Icon</Button>
-<Button endIcon={<Icon />}>With End Icon</Button>
 
 // Loading state
 <Button loading>Loading...</Button>
 <Button loading loadingPosition="end">Loading...</Button>
+
+// With icons
+<Button startIcon={<Icon />}>With Start Icon</Button>
+<Button endIcon={<Icon />}>With End Icon</Button>
 
 // Full width
 <Button fullWidth>Full Width Button</Button>
@@ -79,11 +232,23 @@ import { Button } from '@webprojon/ui-lib';
 - `fullWidth?: boolean` - Make button full width
 - `disabled?: boolean` - Disable the button
 
----
-
-### TextField
+### 2. TextField Component
 
 A flexible input field component with floating labels and validation states.
+
+**Features:**
+
+- 3 variants: `outlined`, `filled`, `standard`
+- 3 sizes: `small`, `medium`, `large`
+- 6 colors: `primary`, `secondary`, `success`, `info`, `warning`, `error`
+- Floating labels
+- Helper text support
+- Error states
+- Multiline support (textarea)
+- Adornments (start/end content)
+- Full accessibility support
+
+**Usage:**
 
 ```tsx
 import { TextField } from '@webprojon/ui-lib';
@@ -153,11 +318,20 @@ const [value, setValue] = useState('');
 - `disabled?: boolean` - Disable the input
 - `required?: boolean` - Mark as required
 
----
-
-### Checkbox
+### 3. Checkbox Component
 
 A checkbox component with customizable appearance and behavior.
+
+**Features:**
+
+- 3 sizes: `small`, `medium`, `large`
+- 6 colors: `primary`, `secondary`, `success`, `info`, `warning`, `error`
+- Label placement options
+- Indeterminate state support
+- Controlled and uncontrolled modes
+- Accessibility support
+
+**Usage:**
 
 ```tsx
 import { Checkbox } from '@webprojon/ui-lib';
@@ -189,14 +363,6 @@ const [checked, setChecked] = useState(false);
   onChange={(e, checked) => setChecked(checked)}
   label="Controlled"
 />
-
-// With custom onChange
-<Checkbox
-  label="Custom handler"
-  onChange={(event, checked) => {
-    console.log('Checked:', checked);
-  }}
-/>
 ```
 
 **Props:**
@@ -212,11 +378,22 @@ const [checked, setChecked] = useState(false);
 - `disabled?: boolean` - Disable the checkbox
 - `required?: boolean` - Mark as required
 
----
-
-### Select
+### 4. Select Component
 
 A dropdown select component with single and multiple selection support.
+
+**Features:**
+
+- 3 variants: `outlined`, `filled`, `standard`
+- 3 sizes: `small`, `medium`, `large`
+- 6 colors: `primary`, `secondary`, `success`, `info`, `warning`, `error`
+- Single and multiple selection
+- Checkmarks for multiple selection
+- Chip display for selected values
+- Custom options support
+- Accessibility support
+
+**Usage:**
 
 ```tsx
 import { Select } from '@webprojon/ui-lib';
@@ -276,14 +453,6 @@ const [value, setValue] = useState('');
   value={value}
   onChange={(e, newValue) => setValue(newValue)}
 />
-
-// With helper text
-<Select
-  label="With helper"
-  options={options}
-  helperText="Choose your preferred option"
-  error
-/>
 ```
 
 **Props:**
@@ -305,11 +474,19 @@ const [value, setValue] = useState('');
 - `required?: boolean` - Mark as required
 - `error?: boolean` - Error state
 
----
-
-### Switch
+### 5. Switch Component
 
 A toggle switch component for boolean values.
+
+**Features:**
+
+- 3 sizes: `small`, `medium`, `large`
+- 6 colors: `primary`, `secondary`, `success`, `info`, `warning`, `error`
+- Label placement options
+- Controlled and uncontrolled modes
+- Accessibility support
+
+**Usage:**
 
 ```tsx
 import { Switch } from '@webprojon/ui-lib';
@@ -358,11 +535,19 @@ const [checked, setChecked] = useState(false);
 - `onChange?: (event, checked) => void` - Change handler
 - `disabled?: boolean` - Disable the switch
 
----
-
-### Modal
+### 6. Modal Component
 
 A modal dialog component with backdrop and keyboard navigation.
+
+**Features:**
+
+- Backdrop click handling
+- Escape key support
+- Keep mounted option for animations
+- Accessibility attributes support
+- Custom backdrop behavior
+
+**Usage:**
 
 ```tsx
 import { Modal } from '@webprojon/ui-lib';
@@ -430,77 +615,111 @@ const [open, setOpen] = useState(false);
 - `aria-labelledby?: string` - ID of element that labels the modal
 - `aria-describedby?: string` - ID of element that describes the modal
 
----
+## Styling System
 
-## 🎨 Styling
+### Design System
 
-All components use CSS Modules and come with a default theme. You can customize the appearance by:
+The library follows Apple's design principles with:
 
-1. **Importing the CSS file:**
+- **Color Palette:** Primary blue (#0172eb), semantic colors for success, error, warning
+- **Typography:** San Francisco font family with consistent sizing
+- **Spacing:** 6px base unit with consistent spacing scale
+- **Border Radius:** 4px for subtle rounded corners
+- **Shadows:** Layered shadows for depth and elevation
 
-```tsx
-import '@webprojon/ui-lib/dist/style.css';
-```
+### CSS Architecture
 
-2. **Using custom className:**
+- **CSS Modules:** Scoped styles to prevent conflicts
+- **SCSS Variables:** Centralized design tokens
+- **BEM-like Naming:** Consistent class naming convention
+- **Responsive Design:** Mobile-first approach
 
-```tsx
-<Button className="my-custom-button">Custom Button</Button>
-```
+### Customization
 
-3. **Overriding CSS variables:**
+1. **Import the CSS file:**
 
-```css
-:root {
-  --primary-color: #your-color;
-  --border-radius: 8px;
-}
-```
+   ```tsx
+   import '@webprojon/ui-lib/dist/style.css';
+   ```
 
-## 🔧 TypeScript Support
+2. **Use custom className:**
 
-This library is built with TypeScript and provides full type definitions:
+   ```tsx
+   <Button className="my-custom-button">Custom Button</Button>
+   ```
 
-```tsx
-import { ButtonProps, TextFieldProps } from '@webprojon/ui-lib';
+3. **Override CSS variables:**
+   ```css
+   :root {
+     --primary-color: #your-color;
+     --border-radius: 8px;
+   }
+   ```
 
-const MyButton: React.FC<ButtonProps> = (props) => {
-  return <Button {...props} />;
-};
-```
+## Development Workflow
 
-## 📱 Browser Support
+### Code Quality
+
+- **ESLint:** Enforces code quality and consistency
+- **Prettier:** Automatic code formatting
+- **TypeScript:** Type safety and better development experience
+- **Husky:** Git hooks for pre-commit checks
+- **lint-staged:** Run linters only on staged files
+
+### Testing
+
+- **Jest:** Unit testing framework
+- **React Testing Library:** Component testing utilities
+- **Coverage Reports:** Track test coverage
+- **Test Files:** Each component has comprehensive tests
+
+### Documentation
+
+- **Storybook:** Interactive component documentation
+- **TypeScript:** Self-documenting code with types
+- **README:** Comprehensive usage documentation
+
+### Build Process
+
+1. **Development:**
+   - Webpack dev server with HMR
+   - Source maps for debugging
+   - Fast rebuild times
+
+2. **Production:**
+   - tsup for optimized library builds
+   - Tree-shaking support
+   - Multiple output formats (CJS, ESM)
+   - TypeScript declarations
+
+## Browser Support
 
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
 
-## 📄 License
+## License
 
-MIT
+MIT License - see LICENSE file for details
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass
+6. Submit a pull request
 
-## 📞 Support
+## Support
 
-If you have any questions or need help, please open an issue on GitHub.
-A modern React component library with TypeScript support.
+For questions, issues, or contributions, please:
 
-## Installation
+- Open an issue on GitHub
+- Check the Storybook documentation
+- Review the component examples in this README
 
-```bash
-npm install @webprojon/ui-lib
-```
+---
 
-## Usage
-
-```tsx
-import { Button } from '@webprojon/ui-lib';
-
-function App() {
-  return <Button>Click me</Button>;
-}
-```
+**Built with ❤️ using React, TypeScript, and modern web technologies**
