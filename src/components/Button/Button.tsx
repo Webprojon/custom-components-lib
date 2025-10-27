@@ -114,7 +114,24 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               {endIcon}
             </span>
           )}
-          {showEndLoading && renderLoadingSpinner()}
+          {showEndLoading && (
+            <span className={`${styles.spinner} ${styles.spinnerEnd}`} aria-hidden="true">
+              <svg className={styles.spinnerSvg} viewBox="0 0 24 24">
+                <circle
+                  className={styles.spinnerCircle}
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeDasharray="31.416"
+                  strokeDashoffset="31.416"
+                />
+              </svg>
+            </span>
+          )}
 
           <span className={styles.rippleContainer} aria-hidden="true">
             {ripples.map((r) => (
