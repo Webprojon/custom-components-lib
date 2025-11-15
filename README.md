@@ -4,13 +4,13 @@
 
 A modern, lightweight, and customizable UI components library for React with TypeScript support.
 
-## 🚀 Installation
+##  Installation
 
 ```bash
 npm install @webprojon/ui-lib
 ```
 
-## 📦 Usage
+##  Usage
 
 ```tsx
 import { Button, TextField, Modal, Checkbox, Select, Switch } from '@webprojon/ui-lib';
@@ -27,7 +27,7 @@ export default function App() {
 }
 ```
 
-## 🎨 Components
+##  Components
 
 ### Button
 
@@ -468,26 +468,6 @@ const MyButton: React.FC<ButtonProps> = (props) => {
   return <Button {...props} />;
 };
 ```
-
-## 📱 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## 📄 License
-
-MIT
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📞 Support
-
-If you have any questions or need help, please open an issue on GitHub.
-A modern React component library with TypeScript support.
 
 ## Installation
 
